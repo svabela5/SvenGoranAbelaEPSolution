@@ -13,7 +13,7 @@ namespace DataAccess.Repositories
         private PollDbContext myContext;
         public PollRepository(PollDbContext _myContext) 
         {
-            PollDbContext myContext = _myContext;
+            myContext = _myContext;
         }
 
         public IQueryable<Poll> GetPolls()
