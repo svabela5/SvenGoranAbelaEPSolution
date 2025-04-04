@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repositories;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 
 namespace Presentation.Controllers
 {
@@ -34,5 +35,41 @@ namespace Presentation.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Vote(int id, [FromServices] PollRepository _pollRepo)
+        {
+            Poll poll = _pollRepo.GetPoll(id);
+            if (poll == null)
+            {
+                return NotFound();
+            }
+
+            VoteModel model = new VoteModel
+            {
+                Id = poll.Id,
+                choice = 0
+            };
+
+            ViewBag.PollId = id;
+            ViewBag.Title = poll.Title;
+            ViewBag.Option1Text = poll.Option1Text;
+            ViewBag.Option2Text = poll.Option2Text;
+            ViewBag.Option3Text = poll.Option3Text;
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddVote(VoteModel model, [FromServices] PollRepository _pollRepo)
+        {
+            if (ModelState.IsValid)
+            {
+                _pollRepo.Vote(model.Id, model.choice);
+                TempData["message"] = "Voting was successfull";
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
     }
 }

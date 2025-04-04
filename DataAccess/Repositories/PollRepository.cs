@@ -33,11 +33,28 @@ namespace DataAccess.Repositories
             myContext.SaveChanges();
         }
 
-        public void UpdatePoll(Poll poll)
-        { 
-        }
+        public void Vote(int id, int choice)
+        {
+            var poll = GetPoll(id);
 
-        public void DeletePoll(int id)
-        { }
+            if (poll != null)
+            {
+                switch (choice)
+                {
+                    case 1:
+                        poll.Option1VotesCount++;
+                        break;
+                    case 2:
+                        poll.Option2VotesCount++;
+                        break;
+                    case 3:
+                        poll.Option3VotesCount++;
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid choice");
+                }
+                myContext.SaveChanges();
+            }
+        }
     }
 }
