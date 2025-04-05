@@ -34,7 +34,7 @@ namespace Presentation.Controllers
                 p.Option3VotesCount = 0;
                 p.CreatedAt = DateTime.Now;
                 _pollRepo.AddPoll(p);
-                TempData["message"] = "Student was added successfully";
+                TempData["message"] = "Poll was added successfully";
                 return RedirectToAction("Index");
             }
             return View();

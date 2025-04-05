@@ -18,27 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option1Text)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option2Text)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option3Text)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option1VotesCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option2VotesCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option3VotesCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -52,30 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Option1Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option2Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option3Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option1VotesCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option2VotesCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option3VotesCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                <a href="/Poll/Vote/@item.Id">Vote</a>
+                    <a href="/Poll/Vote/@item.Id" class="btn btn-outline-success">Vote</a>
                     &nbsp
-                    <a href="/Poll/Results/@item.Id">Results</a>
+                    <a href="/Poll/Results/@item.Id" class="btn btn-outline-primary">Results</a>
                 </td>
         </tr>
 }
