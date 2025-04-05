@@ -7,7 +7,7 @@ namespace Presentation.Controllers
 {
     public class PollController : Controller
     {
-        public IActionResult Index([FromServices] PollRepository _pollRepo)
+        public IActionResult Index([FromServices] IPollRepository _pollRepo)
         {
             var polls = _pollRepo.GetPolls();
             var orderedPolls = polls.OrderByDescending(p => p.CreatedAt);
@@ -15,13 +15,13 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create([FromServices] PollRepository _pollRepo)
+        public IActionResult Create([FromServices] IPollRepository _pollRepo)
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Add(Poll p, [FromServices] PollRepository _pollRepo, [FromServices] IWebHostEnvironment host)
+        public IActionResult Add(Poll p, [FromServices] IPollRepository _pollRepo, [FromServices] IWebHostEnvironment host)
         {
             if (ModelState.IsValid)
             {
@@ -37,7 +37,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult Vote(int id, [FromServices] PollRepository _pollRepo)
+        public IActionResult Vote(int id, [FromServices] IPollRepository _pollRepo)
         {
             Poll poll = _pollRepo.GetPoll(id);
             if (poll == null)
@@ -60,7 +60,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddVote(VoteModel model, [FromServices] PollRepository _pollRepo)
+        public IActionResult AddVote(VoteModel model, [FromServices] IPollRepository _pollRepo)
         {
             if (ModelState.IsValid)
             {

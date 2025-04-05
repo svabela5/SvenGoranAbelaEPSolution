@@ -22,7 +22,33 @@ public class Program
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddScoped<PollDbContext>();
-        builder.Services.AddScoped<PollRepository>();
+        //builder.Services.AddScoped<PollRepository>();
+
+        var repoSettings = 1;
+
+        try
+        {
+            repoSettings = builder.Configuration.GetValue<int>("repoSettings"); // 1 means db; 2 means file, 3 means email, 4 means cloud
+        }
+        catch
+        {
+            repoSettings = 1;
+        }
+
+
+
+        switch (repoSettings)
+        {
+            case 1:
+                builder.Services.AddScoped<IPollRepository, PollRepository>();
+                break;
+            case 2:
+                builder.Services.AddScoped<IPollRepository, PollFileRepository>();
+                break;
+            default:
+                builder.Services.AddScoped<IPollRepository, PollRepository>();
+                break;
+        }
 
         var app = builder.Build();
 

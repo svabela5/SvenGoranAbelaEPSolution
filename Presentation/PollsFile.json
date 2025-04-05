@@ -1,0 +1,35 @@
+[
+  {
+    "Id": 1,
+    "Title": "Who will win the 2025 F1 Drivers Championship",
+    "Option1Text": "Lewis Hamilton",
+    "Option2Text": "Max Verstappen",
+    "Option3Text": "Lando Norris",
+    "Option1VotesCount": 0,
+    "Option2VotesCount": 0,
+    "Option3VotesCount": 0,
+    "CreatedAt": "2025-04-05T08:32:31.2378922+02:00"
+  },
+  {
+    "Id": 2,
+    "Title": "Who will win the 2025 Constructors championship",
+    "Option1Text": "Ferrari",
+    "Option2Text": "Mercedes",
+    "Option3Text": "McLaren",
+    "Option1VotesCount": 0,
+    "Option2VotesCount": 0,
+    "Option3VotesCount": 0,
+    "CreatedAt": "2025-04-05T08:33:34.9863736+02:00"
+  },
+  {
+    "Id": 3,
+    "Title": "Who is the best F1 Driver",
+    "Option1Text": "Lewis Hamilton",
+    "Option2Text": "Max Verstappen",
+    "Option3Text": "Michael Schumacher",
+    "Option1VotesCount": 0,
+    "Option2VotesCount": 0,
+    "Option3VotesCount": 0,
+    "CreatedAt": "2025-04-05T08:37:57.6692766+02:00"
+  }
+]

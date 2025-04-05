@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    public class PollRepository
+    public class PollRepository:IPollRepository
     {
         private PollDbContext myContext;
-        public PollRepository(PollDbContext _myContext) 
+        public PollRepository(PollDbContext _myContext)
         {
             myContext = _myContext;
         }
@@ -19,7 +19,7 @@ namespace DataAccess.Repositories
         public IQueryable<Poll> GetPolls()
         {
             return myContext.Polls;
-            
+
         }
 
         public Poll GetPoll(int id)
