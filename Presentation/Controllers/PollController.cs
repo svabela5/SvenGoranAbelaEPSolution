@@ -1,6 +1,8 @@
 ﻿using DataAccess.Repositories;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Presentation.Models;
 
 namespace Presentation.Controllers
@@ -69,6 +71,18 @@ namespace Presentation.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Results(int id, [FromServices] IPollRepository _pollRepo) 
+        {
+            Poll poll = _pollRepo.GetPoll(id);
+            if (poll == null)
+            {
+                return NotFound();
+            }
+
+            return View(poll);
         }
 
     }
