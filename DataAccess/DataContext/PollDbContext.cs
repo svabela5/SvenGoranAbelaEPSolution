@@ -17,5 +17,6 @@ namespace DataAccess.DataContext
         }
 
         public DbSet<Poll> Polls { get; set; }
+        public DbSet<PollUser> PollUsers { get; set; }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using DataAccess.Repositories;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Presentation.ActionFilters;
 using Presentation.Models;
 
 namespace Presentation.Controllers
@@ -39,6 +41,8 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [VotingActionFilter()]
         public IActionResult Vote(int id, [FromServices] IPollRepository _pollRepo)
         {
             Poll poll = _pollRepo.GetPoll(id);
@@ -62,11 +66,18 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddVote(VoteModel model, [FromServices] IPollRepository _pollRepo)
+        [Authorize]
+        public IActionResult AddVote(VoteModel model, [FromServices] IPollRepository _pollRepo, [FromServices] PollUserRepository _voteRepo)
         {
             if (ModelState.IsValid)
             {
                 _pollRepo.Vote(model.Id, model.choice);
+                PollUser pollUser = new PollUser
+                {
+                    PollId = model.Id,
+                    UserId = User.Identity.Name,
+                };
+                _voteRepo.AddVote(pollUser);
                 TempData["message"] = "Voting was successfull";
                 return RedirectToAction("Index");
             }
